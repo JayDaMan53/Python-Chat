@@ -9,6 +9,7 @@
         border-radius: 1px;
         color: rgb(0, 0, 0);
         transition: background-color 1s;
+        font-family: Arial, Helvetica, sans-serif;
             }
             
             .rounded-text-box {
@@ -140,16 +141,84 @@
     </style>
 </head>
     <body>
-        <div class="rounded-text-box" style="height: 90%; width: 68%; position: absolute;"></div>
-        <div class="rounded-text-box" style="height: 90%; width: 29%; position: absolute; left: 70%;"></div>
+        <div class="rounded-text-box" style="height: 90%; width: 68%; position: absolute; overflow-y: scroll;"></div>
+        <div class="rounded-text-box" style="height: 90%; width: 29%; position: absolute; left: 70%; overflow-y: scroll;"></div>
         <div class="rounded-text-box" style="height: 4%; width: 99%; position: absolute; bottom: 0%;">
-            <input style="height: 95%; width: 95%; position: absolute; bottom: 1%; font-size: 100%; font-size: larger; border: 0px;"></input>
-            <a><img src="Send.png" style="height: 95%; width: 2.5%; position: absolute; bottom: 1%; left: 96.5%; font-size: 100%; font-size: larger; border: 0px;"></a>
+            <input style="height: 95%; width: 95%; position: absolute; bottom: 1%; font-size: 100%; font-size: xx-large; border: 0px;"></input>
+            <img onclick="Send(event)" id="Send" src="https://raw.githubusercontent.com/JayDaMan53/Python-Chat/main/Assets/Send.png" style="height: 95%; width: 2.5%; position: absolute; bottom: 1%; left: 96.5%; font-size: 100%; border: 0px;">
         </div>
 
 
         <script>
             
+            function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for(let i = 0; i <ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function setUser() {
+                cookie = getCookie("User")
+                console.log(cookie)
+                if (cookie = "" || !cookie) {
+                    document.cookie = "User="+ window.prompt("Display Name:") +"; path=/";
+                }
+            }
+
+            function Send(event) {
+                let message = document.querySelector("body > div:nth-child(3) > input").value
+                let user = getCookie("User")
+                fetch('/Send', {
+                    method: 'POST', // or 'PUT'
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ Message: message, User: user }),
+                })
+                .then(response => response.text())
+                .then(data => console.log(data))
+                document.querySelector("body > div:nth-child(3) > input").value = ''
+            }
+
+            setUser()
+
+            // Add event listener to input box for keypress event
+            document.querySelector("body > div:nth-child(3) > input").addEventListener('keypress', function(event) {
+                if (event.keyCode === 13) { // 13 is the keycode for Enter
+                    Send(event);
+                }
+            });
+
+            setInterval(function() {
+                const user = getCookie("User");
+                fetch("/Ping", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ User: user }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Filter out empty messages before mapping to <h3> elements
+                    const messagesHtml = data.messages.split("\n").filter(message => message.trim() !== "").map(message => `<h3 class="text-box">${message}</h3>`).join('');
+                    document.querySelector("body > div:nth-child(1)").innerHTML = messagesHtml;
+
+                    // Update the users container
+                    const usersListHtml = Object.keys(data.Users).map(user => `<h3 class="text-box">${user}</h3>`).join('');
+                    document.querySelector("body > div:nth-child(2)").innerHTML = usersListHtml;
+                });
+            }, 1000);
         </script>
     </body>
 </html>
