@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <style>
+            body {
+        min-width: 200px; /* your desired width */
+        max-width: 100%;
+        position: relative;
+        vertical-align: middle;
+        border-radius: 1px;
+        color: rgb(0, 0, 0);
+        transition: background-color 1s;
+            }
+            
+            .rounded-text-box {
+        border: 0.5px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 3px 3px 5px #555;
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        transition: background-color 1s;
+            }
+
+            .rounded-text-box-dark {
+        border: 0.5px solid rgb(255, 255, 255);
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 3px 3px 5px #555;
+        color: #fff;
+        background-color: rgb(70, 70, 70);
+        transition: background-color 1s;
+            }
+
+            .dark-mode {
+        background-color: #000;
+        color: #fff;
+        transition: background-color 1s;
+        }
+
+        .dark-mode-link {
+        color: rgb(0, 229, 254);
+        transition: color 1s;
+        z-index: 999999999999;
+        }
+
+        .link {
+        color: rgb(0, 47, 254);
+        transition: color 1s;
+        z-index: 999999999999;
+        }
+
+        .Settings {
+        position: absolute;
+        width: 40px;
+        left: 84%;
+        top: 92%;
+        height: 40px;
+        transition: opacity .5s;
+        }
+
+        .Settings:hover {
+        cursor: pointer;
+        }
+
+        .SettingsLink {
+        text-decoration: underline;
+        cursor: pointer;
+        }
+
+        .SandwichClicker {
+        border: 0.5px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 3px 3px 5px #555;
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        align-self: center;
+        top: 80%;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1s, width 1s, background-color 1s;
+        }
+
+        .SandwichClickerOff {
+        border: 0.5px solid rgb(255, 255, 255);
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 3px 3px 5px #555;
+        color: #fff;
+        background-color: rgb(70, 70, 70);
+        position: absolute;
+        align-self: center;
+        top: 80%;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1s, width 1s, background-color 1s;
+        }
+
+        .SandwichClickerLight {
+        border: 0.5px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 3px 3px 5px #555;
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        align-self: center;
+        top: 80%;
+        opacity: 1;
+        transition: opacity 1s, background-color 1s;
+        pointer-events: auto;
+        }
+
+        .SandwichClickerDark {
+        border: 0.5px solid rgb(255, 255, 255);
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 3px 3px 5px #555;
+        color: #fff;
+        background-color: rgb(70, 70, 70);
+        position: absolute;
+        align-self: center;
+        top: 80%;
+        opacity: 1;
+        transition: opacity 1s, background-color 1s;
+        }
+
+            .text-box {
+        border: 0.5px solid black;
+        padding: 10px;
+        box-shadow: 3px 3px 5px #555;
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        transition: background-color 1s;}
+
+        img:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+    <body>
+        <div class="rounded-text-box" style="height: 90%; width: 68%; position: absolute;"></div>
+        <div class="rounded-text-box" style="height: 90%; width: 29%; position: absolute; left: 70%;"></div>
+        <div class="rounded-text-box" style="height: 4%; width: 99%; position: absolute; bottom: 0%;">
+            <input style="height: 95%; width: 95%; position: absolute; bottom: 1%; font-size: 100%; font-size: larger; border: 0px;"></input>
+            <a><img src="Send.png" style="height: 95%; width: 2.5%; position: absolute; bottom: 1%; left: 96.5%; font-size: 100%; font-size: larger; border: 0px;"></a>
+        </div>
+
+
+        <script>
+            
+        </script>
+    </body>
+</html>
